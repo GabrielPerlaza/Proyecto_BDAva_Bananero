@@ -102,12 +102,18 @@ public class Frm_Usuarios extends javax.swing.JInternalFrame {
         txt_contrasena = new javax.swing.JPasswordField();
 
         setClosable(true);
-        setTitle("Productos");
+        setTitle("Usuarios");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Nombre *");
+
+        txt_nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nombreActionPerformed(evt);
+            }
+        });
 
         jtb_usuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -173,7 +179,7 @@ public class Frm_Usuarios extends javax.swing.JInternalFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel5.setText("Cotraseña *");
+        jLabel5.setText("Contraseña *");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Registro de Usuarios");
@@ -328,6 +334,10 @@ public class Frm_Usuarios extends javax.swing.JInternalFrame {
     private void txt_contrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_contrasenaActionPerformed
                 // TODO add your handling code here:
     }//GEN-LAST:event_txt_contrasenaActionPerformed
+
+    private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nombreActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

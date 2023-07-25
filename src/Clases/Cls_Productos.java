@@ -12,7 +12,7 @@ public class Cls_Productos {
     private ResultSet RS;
     private final Conectar CN;
     private DefaultTableModel DT;
-    private final String SQL_INSERT_PRODUCTOS = "INSERT INTO producto (pro_codigo,pro_descripcion) values (?,?)";
+    private final String SQL_INSERT_PRODUCTOS = "INSERT INTO producto (pro_nombre, pro_descripcion, pro_peso) values (?,?,?)";
     private final String SQL_SELECT_PRODUCTOS = "SELECT *FROM producto";
     
     public Cls_Productos(){
@@ -29,7 +29,9 @@ public class Cls_Productos {
             
         };
         DT.addColumn("Código");
+        DT.addColumn("Nombre");
         DT.addColumn("Descripción");
+        DT.addColumn("Peso");
         return DT;
     }
     
@@ -38,10 +40,12 @@ public class Cls_Productos {
             setTitulosProductos();
             PS = CN.getConnection().prepareStatement(SQL_SELECT_PRODUCTOS);
             RS = PS.executeQuery();
-            Object[] fila = new Object[2];
+            Object[] fila = new Object[4];
             while(RS.next()){
                 fila[0] = RS.getString(1);
-                fila[1] = RS.getString(2);  
+                fila[1] = RS.getString(2);
+                fila[2] = RS.getString(3);
+                fila[3] = RS.getFloat(4);
                 DT.addRow(fila);
             }
         } catch (SQLException e) {
@@ -54,12 +58,13 @@ public class Cls_Productos {
         return DT;
     }
     
-    public int registrarProducto(String codigo, String descripcion){
+    public int registrarProducto(String nombre, String descripcion, float peso){
         int res=0;
         try {
             PS = CN.getConnection().prepareStatement(SQL_INSERT_PRODUCTOS);
-            PS.setString(1, codigo);
+            PS.setString(1,nombre );
             PS.setString(2, descripcion);
+            PS.setFloat(3, peso);
             res = PS.executeUpdate();
             if(res > 0){
                 JOptionPane.showMessageDialog(null, "Producto registrado con éxito.");
@@ -107,8 +112,8 @@ public class Cls_Productos {
     }
     
     
-    public int actualizarProducto(String codigo, String descripcion, String codigo_old){
-        String SQL = "UPDATE producto SET pro_codigo='"+codigo+"',pro_descripcion='"+descripcion+"' WHERE pro_codigo='"+codigo_old+"'";
+    public int actualizarProducto(String nombre, String descripcion, String codigo_old, float peso){
+        String SQL = "UPDATE producto SET pro_nombre='"+nombre+"',pro_descripcion='"+descripcion+"', pro_peso='"+peso+"' WHERE pro_codigo='"+codigo_old+"'";
         int res=0;
         try {
             PS = CN.getConnection().prepareStatement(SQL);
