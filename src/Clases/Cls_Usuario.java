@@ -77,7 +77,8 @@ public class Cls_Usuario {
             while(RS.next()){
                 fila[0] = RS.getString(1);
                 fila[1] = RS.getString(2);  
-                fila[2] = RS.getString(3);
+                //fila[2] = RS.getString(3);
+                fila[2] = "****";
                 fila[3] = RS.getString(4);
                 DT.addRow(fila);
             }
